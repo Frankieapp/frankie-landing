@@ -11,11 +11,10 @@ export default function Hero() {
       <div className="relative z-10 max-w-3xl mx-auto">
         <p className="text-[#E94B4B] text-sm font-medium mb-3">Quick. Clear. Kind.</p>
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-[#2B2B2B]">
-          Need a quick <br /> $100–$400?
-          <br /> Frankie’s got you.
+        Short-term support. Built on trust. <br />
         </h1>
         <p className="text-lg text-[#2B2B2B] mb-8 max-w-xl mx-auto">
-          Real money. No score shaming. No fine print. <br /> Just a loan that shows up
+        Apply for a $50–$350 loan, repaid over 65 days. <br /> Just a loan that shows up
           when life gets loud.
         </p>
         <Link href="/join">
