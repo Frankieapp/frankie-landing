@@ -1,8 +1,8 @@
-// src/pages/howfrankieworks.tsx
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useState } from "react";
 import { ShieldCheck, Lock, Clock } from "lucide-react";
+import Link from "next/link";
 
 export default function HowFrankieWorks() {
   const [amount, setAmount] = useState(250);
@@ -96,12 +96,11 @@ export default function HowFrankieWorks() {
           </div>
 
           <div className="mt-16">
-            <a
-              href="/"
-              className="inline-block bg-[#E94B4B] text-white text-base font-semibold px-6 py-3 rounded-full shadow hover:scale-105 transition"
-            >
-              Start Your Application
-            </a>
+            <Link href="/">
+              <a className="inline-block bg-[#E94B4B] text-white text-base font-semibold px-6 py-3 rounded-full shadow hover:scale-105 transition">
+                Start Your Application
+              </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -109,4 +108,4 @@ export default function HowFrankieWorks() {
       <Footer />
     </main>
   );
-} 
+}

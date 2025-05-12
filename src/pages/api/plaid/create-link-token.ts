@@ -1,8 +1,13 @@
-// pages/api/plaid/create-link-token.ts
-import { NextApiRequest, NextApiResponse } from "next";
-import { Configuration, PlaidApi, PlaidEnvironments } from "plaid";
+import type { NextApiRequest, NextApiResponse } from "next";
+import {
+  Configuration,
+  PlaidApi,
+  PlaidEnvironments,
+  Products,
+  CountryCode,
+} from "plaid";
 
-const config = new Configuration({
+const configuration = new Configuration({
   basePath: PlaidEnvironments.sandbox,
   baseOptions: {
     headers: {
@@ -12,24 +17,24 @@ const config = new Configuration({
   },
 });
 
-const plaidClient = new PlaidApi(config);
+const client = new PlaidApi(configuration);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const tokenResponse = await plaidClient.linkTokenCreate({
+    const tokenResponse = await client.linkTokenCreate({
       user: {
-        client_user_id: "unique-user-id", // use the actual user ID
+        client_user_id: "user-id",
       },
       client_name: "Frankie",
-      products: ["auth", "transactions", "income"],
-      country_codes: ["CA"],
+      products: [Products.Auth, Products.Transactions, Products.Income],
+      country_codes: [CountryCode.Ca],
       language: "en",
       redirect_uri: process.env.PLAID_REDIRECT_URI || undefined,
     });
 
-    res.status(200).json({ link_token: tokenResponse.data.link_token });
+    res.status(200).json(tokenResponse.data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to create link token" });
+    console.error("Plaid Link Token Error:", error);
+    res.status(500).json({ error: "Could not create link token" });
   }
 }
